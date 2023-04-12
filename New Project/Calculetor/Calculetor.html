@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <style>
+      .calculator {
+        width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        text-align: center;
+        animation: slide-up 0.3s ease-in-out;
+      }
+
+      @keyframes slide-up {
+        from {
+          transform: translateY(5%);
+        }
+        to {
+          transform: translateY(0%);
+        }
+      }
+
+      #expression {
+        font-size: 24px;
+        padding: 10px 0;
+        color: #00A8CC;
+        letter-spacing: 5px;
+      }
+
+      #result {
+        font-size: 50px;
+        padding: 10px 0;
+        color: #00A8CC;
+      }
+
+      button {
+        width: 75px;
+        height: 50px;
+        font-size: 24px;
+        margin: 5px;
+        background-color: #ffffff00;
+        border: 2px solid #00A8CC;
+        border-radius: 25px;
+        color: #00A8CC;
+        cursor: pointer;
+      }
+      .lastbottom{
+        display: inline-block;
+        width: 340px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <div id="expression">0</div>
+      <div id="result">0</div>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>+</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>-</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>*</button>
+      <button>AC</button>
+      <button>0</button>
+      <button>DEL</button>
+      <button>/</button>
+      <button class="lastbottom">=</button>
+    </div>
+    <script>
+      const expression = document.querySelector("#expression");
+      const result = document.querySelector("#result");
+      const buttons = document.querySelectorAll("button");
+  
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          let buttonValue = button.innerText;
+          if (buttonValue === "AC") {
+            expression.innerText = "0";
+            result.innerText = "0";
+          } else if (buttonValue === "DEL") {
+            expression.innerText = expression.innerText.slice(0, -1);
+            if (expression.innerText === "") {
+              expression.innerText = "0";
+            }
+          } else if (buttonValue === "=") {
+            try {
+              result.innerText = eval(expression.innerText);
+            } catch (error) {
+              result.innerText = "Error";
+            }
+          } else {
+            if (expression.innerText === "0") {
+              expression.innerText = buttonValue;
+            } else {
+              expression.innerText += buttonValue;
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.clock {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+    color: #00A8CC;
+    line-height: 5;
+    animation: slide-up 0.3s ease-in-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(5%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
